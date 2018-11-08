@@ -1,14 +1,15 @@
-#!/usr/bin/env python3
-# 15-puzzle game solver with BFS(breadth-first search) algorithm
+# BFS(breadth-first search) algorithm for 15-puzzle game solver
 
-from random import shuffle
 from queue import PriorityQueue
 
 
-class Puzzle:
+class BFS:
 
-    def create_and_fill_queue(self):
-        myQueue = PriorityQueue()
+    def __init__(self, strategy_param, input_values):
+        self.strategy_param = strategy_param
+        self.rows_number = input_values[0]
+        self.columns_number = input_values[1]
+        self.puzzle = input_values[2:]
 
-        while not myQueue.empty():
-            print(myQueue.get())
+    def solve_puzzle(self):
+        print(self.puzzle)
