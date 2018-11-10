@@ -6,6 +6,7 @@ class IOHandler:
     def __init__(self):
         self.strategy = sys.argv[1]
         self.strategy_param = sys.argv[2]
+
         if sys.argv.__len__() < 4:
             self.input_file_name = 'a.txt'
         else:

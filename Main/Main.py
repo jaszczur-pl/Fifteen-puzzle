@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+
 sys.path.insert(0, '../')
 from Main.BFS import BFS
 from Main.IOHandler import IOHandler
@@ -14,6 +15,10 @@ def main():
     if strategy == 'bfs':
         bfs = BFS(strategy_param, input_values)
         bfs.solve_puzzle()
+
+        io_handler.write_result_file(bfs.solution_length, bfs.solution_path)
+        io_handler.write_stat_file(bfs.solution_length, bfs.number_of_visited_nodes, bfs.number_of_processed_nodes, \
+                                   bfs.recursion_depth, bfs.solution_time)
     elif strategy == 'dfs':
         print('dfs')
     elif strategy == 'astr':
@@ -21,8 +26,7 @@ def main():
     else:
         print('nieprawdiłowa nazwa strategii')
 
-    # io_handler.write_result_file(5, 'LDUR')
-    # io_handler.write_stat_file(5, 13, 5, 5, 3.453)
+
 
 
 if __name__ == '__main__':
