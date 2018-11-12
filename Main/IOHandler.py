@@ -53,6 +53,11 @@ class IOHandler:
         output_file.write(str(move_counter) + "\n" + move_sequence)
         output_file.close()
 
+    def write_wrong_result_file(self, move_counter):
+        output_file = open(self.output_result_file_name, 'w')
+        output_file.write(str(move_counter))
+        output_file.close()
+
     def write_stat_file(self, move_counter, number_of_visited_states, number_of_processed_states, max_recursion_depth,
                         processing_time):
 
@@ -60,4 +65,10 @@ class IOHandler:
         output_file.write(str(move_counter) + "\n" + str(number_of_visited_states) + "\n" \
                           + str(number_of_processed_states) + "\n" + str(max_recursion_depth) + "\n" \
                           + str(processing_time))
+        output_file.close()
+
+    def write_wrong_stat_file(self, move_counter):
+
+        output_file = open(self.output_stat_file_name, 'w')
+        output_file.write(str(move_counter))
         output_file.close()
