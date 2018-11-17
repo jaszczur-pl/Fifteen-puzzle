@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, '../')
 from Main.BFS import BFS
 from Main.DFS import DFS
+from Main.AStar import AStar
 from Main.IOHandler import IOHandler
 
 
@@ -32,7 +33,12 @@ def main():
             io_handler.write_stat_file(dfs.solution_length, dfs.number_of_visited_nodes, dfs.number_of_processed_nodes,\
                                        dfs.recursion_depth, dfs.solution_time)
     elif strategy == 'astr':
-        print('astr')
+        a_star = AStar(strategy_param, input_values)
+        a_star.solve_puzzle()
+
+        io_handler.write_result_file(a_star.solution_length, a_star.solution_path)
+        io_handler.write_stat_file(a_star.solution_length, a_star.number_of_visited_nodes, \
+                                   a_star.number_of_processed_nodes, a_star.recursion_depth, a_star.solution_time)
     else:
         print('nieprawdiłowa nazwa strategii')
 

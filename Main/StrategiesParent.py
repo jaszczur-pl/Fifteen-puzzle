@@ -27,7 +27,8 @@ class StrategiesParent:
             sorted_values.append(i)
 
         sorted_values.append(0)
-        return sorted_values
+        sorted_values_tuple = tuple(sorted_values)
+        return sorted_values_tuple
 
     def check_possible_moves(self, move_type, puzzle):
 
@@ -37,21 +38,21 @@ class StrategiesParent:
         if (move_type == 'L' or move_type == 'l') and rest_value != 0:
             puzzle[zero_index], puzzle[zero_index - 1] = puzzle[zero_index - 1], puzzle[zero_index]  # swap numbers
 
-            return puzzle
+            return tuple(puzzle)
 
         if (move_type == 'R' or move_type == 'r') and rest_value != (self.matrix_length - 1):
             puzzle[zero_index], puzzle[zero_index + 1] = puzzle[zero_index + 1], puzzle[zero_index]  # swap numbers
 
-            return puzzle
+            return tuple(puzzle)
 
         if (move_type == 'U' or move_type == 'u') and full_value != 0:
             puzzle[zero_index], puzzle[zero_index - self.matrix_length] = puzzle[zero_index - self.matrix_length], \
                                                                           puzzle[zero_index]  # swap numbers
 
-            return puzzle
+            return tuple(puzzle)
 
         if (move_type == 'D' or move_type == 'd') and full_value != (self.matrix_height - 1):
             puzzle[zero_index], puzzle[zero_index + self.matrix_length] = puzzle[zero_index + self.matrix_length], \
                                                                           puzzle[zero_index]  # swap numbers
 
-            return puzzle
+            return tuple(puzzle)

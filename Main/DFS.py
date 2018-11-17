@@ -9,17 +9,17 @@ class DFS(StrategiesParent):
 
     def __init__(self, strategy_param, input_values):
         super().__init__(strategy_param, input_values)
-        self.max_recursion_depth = 7
+        self.max_recursion_depth = 6
 
     def solve_puzzle(self):
 
         global current_node
-        current_node = self.puzzle
+        current_node = tuple(self.puzzle)
         number_of_puzzle_elements = len(self.puzzle)
         frontier = LifoQueue(maxsize=self.max_recursion_depth + 1)
-        frontier.put(self.puzzle)
+        frontier.put(tuple(self.puzzle))
         path = ''
-        visited_nodes = [self.puzzle]
+        visited_nodes = [tuple(self.puzzle)]
         is_game_solved = False
         sorted_puzzle = self.sort_puzzle(number_of_puzzle_elements)
 
@@ -37,7 +37,7 @@ class DFS(StrategiesParent):
                 current_node = frontier.get()
                 frontier.put(current_node)
 
-            next_node = self.check_possible_moves(self.strategy_param[i], current_node[:])
+            next_node = self.check_possible_moves(self.strategy_param[i], list(current_node[:]))
 
             if next_node is None or next_node in visited_nodes:
                 i += 1
@@ -50,6 +50,8 @@ class DFS(StrategiesParent):
                 visited_nodes.append(current_node)
 
             if frontier.qsize() == 1 and i >= len(self.strategy_param):
+                # print(frontier.get())
+                # print(i)
                 break
 
         end_time = time.time() * 1000
@@ -61,5 +63,5 @@ class DFS(StrategiesParent):
             self.solution_path = path
             self.solution_length = len(self.solution_path)
             self.number_of_visited_nodes = visited_nodes.__len__()
-            self.number_of_processed_nodes = visited_nodes.__len__()
+            self.number_of_processed_nodes = frontier.qsize()
             self.recursion_depth = (frontier.qsize() - 1)

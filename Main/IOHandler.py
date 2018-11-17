@@ -44,9 +44,9 @@ class IOHandler:
 
         input_file.close()
 
-        array_int = list(map(int, array))
+        tuple_int = tuple(map(int, array))
 
-        return array_int
+        return tuple_int
 
     def write_result_file(self, move_counter, move_sequence):
         output_file = open(self.output_result_file_name, 'w')

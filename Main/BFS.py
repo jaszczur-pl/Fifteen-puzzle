@@ -12,7 +12,7 @@ class BFS(StrategiesParent):
         number_of_puzzle_elements = len(self.puzzle)
         frontier = Queue()
         path = Queue()
-        frontier.put(self.puzzle)
+        frontier.put(tuple(self.puzzle))
         visited_nodes = []
         is_game_solved = False
         sorted_puzzle = self.sort_puzzle(number_of_puzzle_elements)
@@ -28,7 +28,7 @@ class BFS(StrategiesParent):
                 break
 
             for move_type in self.strategy_param:
-                next_node = self.check_possible_moves(move_type, current_node[:])
+                next_node = self.check_possible_moves(move_type, list(current_node[:]))
                 if next_node is not None and next_node not in visited_nodes:
                     frontier.put(next_node)
                     path.put(self.solution_path + move_type)
@@ -40,7 +40,7 @@ class BFS(StrategiesParent):
         self.solution_time = round((end_time - start_time), 3)
         self.solution_length = len(self.solution_path)
         self.number_of_visited_nodes = visited_nodes.__len__()
-        self.number_of_processed_nodes = self.number_of_visited_nodes + frontier.qsize()
+        self.number_of_processed_nodes = frontier.qsize()
         self.recursion_depth = len(self.solution_path)
 
 
