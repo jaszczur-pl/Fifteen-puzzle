@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import sys
 
-sys.path.insert(0, '../')
-from Main.BFS import BFS
-from Main.DFS import DFS
-from Main.AStar import AStar
-from Main.IOHandler import IOHandler
+from BFS import BFS
+from DFS import DFS
+from AStar import AStar
+from IOHandler import IOHandler
 
 
 def main():

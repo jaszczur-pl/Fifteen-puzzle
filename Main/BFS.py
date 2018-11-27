@@ -2,7 +2,7 @@
 
 from queue import Queue
 import time
-from Main.StrategiesParent import StrategiesParent
+from StrategiesParent import StrategiesParent
 
 
 class BFS(StrategiesParent):
@@ -39,8 +39,8 @@ class BFS(StrategiesParent):
 
         self.solution_time = round((end_time - start_time), 3)
         self.solution_length = len(self.solution_path)
-        self.number_of_visited_nodes = visited_nodes.__len__()
-        self.number_of_processed_nodes = frontier.qsize()
+        self.number_of_visited_nodes = visited_nodes.__len__() + frontier.qsize()
+        self.number_of_processed_nodes = visited_nodes.__len__()
         self.recursion_depth = len(self.solution_path)
 
 
