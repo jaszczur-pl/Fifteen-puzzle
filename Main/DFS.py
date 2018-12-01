@@ -9,7 +9,7 @@ class DFS(StrategiesParent):
 
     def __init__(self, strategy_param, input_values):
         super().__init__(strategy_param, input_values)
-        self.max_recursion_depth = 7
+        self.max_recursion_depth = 20
 
     def solve_puzzle(self):
 
@@ -19,7 +19,7 @@ class DFS(StrategiesParent):
         frontier = LifoQueue(maxsize=self.max_recursion_depth + 1)
         frontier.put(tuple(self.puzzle))
         path = ''
-        visited_nodes = [tuple(self.puzzle)]
+        visited_nodes = set(tuple(self.puzzle))
         sorted_puzzle = self.sort_puzzle(number_of_puzzle_elements)
         max_recursion_depth = 0
         current_recursion_depth = 0
@@ -58,7 +58,7 @@ class DFS(StrategiesParent):
                     max_recursion_depth = current_recursion_depth
 
                 is_game_solved = self.visit_node(current_node, sorted_puzzle)
-                visited_nodes.append(current_node)
+                visited_nodes.add(current_node)
 
             if frontier.qsize() == 1 and i >= len(self.strategy_param):
                 is_game_solved = True

@@ -13,7 +13,7 @@ class BFS(StrategiesParent):
         frontier = Queue()
         path = Queue()
         frontier.put(tuple(self.puzzle))
-        visited_nodes = []
+        visited_nodes = set()
         is_game_solved = False
         sorted_puzzle = self.sort_puzzle(number_of_puzzle_elements)
 
@@ -22,7 +22,7 @@ class BFS(StrategiesParent):
         while not is_game_solved:
             current_node = frontier.get()
             is_game_solved = self.visit_node(current_node, sorted_puzzle)
-            visited_nodes.append(current_node)
+            visited_nodes.add(current_node)
 
             if is_game_solved:
                 break
